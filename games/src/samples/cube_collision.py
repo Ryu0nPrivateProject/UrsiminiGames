@@ -38,10 +38,11 @@ class Player(Entity):
         self.vec_x.x = r - l
         self.vec_y.y = u - d
 
-        self.y += u
-        self.y -= d
-        self.x += r
-        self.x -= l
+        self.position += self.vec_x
+        self.position += self.vec_y
+
+        print(self.vec_x)
+        print(self.vec_y, '\n')
 
 
 class Obstacle(Entity):
@@ -64,6 +65,7 @@ class Obstacle(Entity):
         hit_info = self.intersects()
         intersected_objects = hit_info.entities
         intersected_player = list(filter(lambda object: isinstance(object, Player), intersected_objects))
+        print(intersected_player)
         if intersected_player:
             intersected_player = intersected_player[0]
             self.x += intersected_player.vec_x.x
@@ -71,8 +73,6 @@ class Obstacle(Entity):
 
 
 if __name__ == "__main__":
-
-
     player = Player(x=-1)
     num_obstacles = 10
     Obstacle = [Obstacle() for _ in range(num_obstacles)]
