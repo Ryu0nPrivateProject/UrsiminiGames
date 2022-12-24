@@ -45,7 +45,6 @@ class Player(Entity):
             else:
                 self.velocity_y.y = 0
                 force_reduction = abs(1.0 - intersection_object.viscosity) + 0.1
-                print(force_reduction)
                 self.velocity_y.y -= force * (1.0 - force_reduction)
 
         self.position += self.velocity_y
